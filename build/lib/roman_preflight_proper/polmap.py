@@ -1,5 +1,6 @@
 #   Copyright 2019 California Institute of Technology
 #   Modified 23 March 2021 (JEK) - switched to linear from spline interpolation in polab
+#   Modified 18 August 2025 - Added new polaxis parameters for different output polarizations
 # ------------------------------------------------------------------
 
 import numpy as np
