@@ -15,6 +15,7 @@
 # John Krist, JPL
 # Revised Dec 2024: fixed issue with arrays being transposed because fft2, ifft2
 # transforms input from C ordering to output Fortran ordering
+# Revised June 2026: fixed assignment of complex array into float array that caused crash
 
 import os
 os.environ['MKL_NUM_THREADS'] = '1'
@@ -32,10 +33,9 @@ def shift_image( image, xshift_pix, yshift_pix ):
     tilt = proper.prop_shift_center(tilt)
 
     new_image = proper.prop_shift_center(image)
-    new_image[:,:] = fft2(new_image)
+    new_image = fft2(new_image)
     new_image *= np.exp(tilt)
     new_image[:,:] = ifft2(new_image)
     new_image[:,:] = proper.prop_shift_center(new_image)
 
     return new_image
-
